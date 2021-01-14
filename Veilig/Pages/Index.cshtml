@@ -1,0 +1,36 @@
+﻿@page "{slug?}"
+@model IndexModel
+
+@{
+    ViewData["Title"] = $"Club ({RouteData.Values["id"]}) Edit";
+}
+
+<div class="wrap-veilig">
+    <span class="veilig-form-title">
+        @Model.TitleText
+    </span>
+
+    @if (Model.IsFirstLoad)
+    {
+        <form method="post" class="veilig-form validate-form">
+            @if (!Model.IsDecrypt)
+            {
+                <div class="wrap-input validate-input">
+                    <textarea asp-for="PlainText" class="input" required="required" placeholder="Your Text"></textarea>
+                    <span class="focus-input"></span>
+                </div>
+            }
+
+            <div class="wrap-input validate-input">
+                <input asp-for="Key" class="input" type="text" required="required" placeholder="Crypt Key">
+                <span class="focus-input"></span>
+            </div>
+
+            <div class="container-submit-btn">
+                <button type="submit" class="submit-btn">
+                    Submit
+                </button>
+            </div>
+        </form>
+    }
+</div>
